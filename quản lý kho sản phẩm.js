@@ -34,23 +34,27 @@ class item {
     }
 }
 
-var product = [new item('Sony','XperiaX',100),new item('Asus','ROG_Phone_6',9),new item('SamSung','ZFold4',6)];
+var product = [new item('Sony', 'XperiaX', 100), new item('Asus', 'ROG_Phone_6', 9), new item('SamSung', 'ZFold4', 6)];
 var stored
-localStorage.setItem(stored,JSON.stringify(product));
-var storedproduct=JSON.parse(localStorage.getItem(stored));
-console.log(storedproduct)
+var storedproduct
+function storedlc(){
+    localStorage.setItem(stored, JSON.stringify(product));
+    storedproduct = JSON.parse(localStorage.getItem(stored));
+    console.log(storedproduct)
+}
 function hienthisp() {
+    storedlc()
     let stt = 1;
     let chuoicaccaulenh = '';
-    for (let i = 0; i < product.length; i++, stt++) {
-        if (product[i] !== 'empty') {
+    for (let i = 0; i < storedproduct.length; i++, stt++) {
+        if (storedproduct[i] !== 'empty') {
             let caulenh = '<tr class="tablelist">' + '<td>' + stt + '</td>'
-                + '<td class="tablelist">' + product[i].getbrand() + '</td>'
-                + '<td class="tablelist">' + product[i].getname() + '</td>'
-                + '<td class="tablelist">' + product[i].getamount() + '</td>'
-                + '<td class="tablelist">' + '<button onclick=' + 'suatensp("' + product[i].getname() + '")>' + 'Sửa' + '</button>'
+                + '<td class="tablelist">' + storedproduct[i].brand + '</td>'
+                + '<td class="tablelist">' + storedproduct[i].name + '</td>'
+                + '<td class="tablelist">' + storedproduct[i].amount + '</td>'
+                + '<td class="tablelist">' + '<button onclick=' + 'suatensp("' + storedproduct[i].name + '")>' + 'Sửa' + '</button>'
                 + '</td>'
-                + '<td class="tablelist">' + '<button onclick=' + 'xoasp("' + product[i].getname() + '")>' + 'Xóa' + '</button>'
+                + '<td class="tablelist">' + '<button onclick=' + 'xoasp("' + storedproduct[i].name + '")>' + 'Xóa' + '</button>'
                 + '</td>'
                 + '</tr>';
             chuoicaccaulenh += caulenh
@@ -76,7 +80,10 @@ function themsp() {
     if (brand != '' && model != '' & amount != '') {
         let a = new item(brand, model, amount)
         product.push(a)
-        localStorage.setItem(classstorage,product)
+        storedproduct.push(a)
+        storedlc()
+        console.log(product)
+        console.log('stored'+storedproduct)
 
         hienthisp()
     } else alert('Hãy nhập thông tin vật phẩm muốn thêm')
@@ -91,15 +98,17 @@ function suatensp(suaten) {
                 nhap = prompt('Sửa số lượng sản phẩm: ');
             }
             product[i].setamount(nhap);
+
             hienthisp()
         }
     }
 }
 
 function xoasp(spxoa) {
-    for (let i = 0; i < product.length; i++) {
-        if (spxoa === product[i].name) {
-            product.splice(i, 1);
+    for (let i = 0; i < storedproduct.length; i++) {
+        if (spxoa === storedproduct[i].name) {
+            storedproduct.splice(i, 1);
+
             hienthisp()
         }
     }
@@ -189,7 +198,6 @@ function timkiem() {
         }
     }
 }
-
 
 
 /* When the user clicks on the button,
