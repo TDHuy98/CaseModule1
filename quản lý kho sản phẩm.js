@@ -34,16 +34,17 @@ class item {
     }
 }
 
-var product = [new item('Sony', 'XperiaX', 100), new item('Asus', 'ROG_Phone_6', 9), new item('SamSung', 'ZFold4', 6)];
+// var product = [new item('Sony', 'XperiaX', 100), new item('Asus', 'ROG_Phone_6', 9), new item('SamSung', 'ZFold4', 6)];
+
 var stored
-var storedproduct
-function storedlc(){
-    localStorage.setItem(stored, JSON.stringify(product));
-    storedproduct = JSON.parse(localStorage.getItem(stored));
-    console.log(storedproduct)
+if (JSON.parse(localStorage.getItem(stored)) == null) {
+    localStorage.setItem(stored, JSON.stringify([new item('', '', '')]));
 }
+var storedproduct = JSON.parse(localStorage.getItem(stored));
+console.log(storedproduct)
+
+
 function hienthisp() {
-    storedlc()
     let stt = 1;
     let chuoicaccaulenh = '';
     for (let i = 0; i < storedproduct.length; i++, stt++) {
@@ -79,25 +80,27 @@ function themsp() {
     let amount = document.getElementById('amountinp').value;
     if (brand != '' && model != '' & amount != '') {
         let a = new item(brand, model, amount)
-        product.push(a)
-        storedproduct.push(a)
-        storedlc()
-        console.log(product)
-        console.log('stored'+storedproduct)
+        if (storedproduct[0] == {brand: "", name: '', amount: ''}) {
 
-        hienthisp()
+            storedproduct.shift()
+        } else {
+            storedproduct.push(JSON.parse(JSON.stringify(a)))
+            localStorage.setItem(stored, JSON.stringify(storedproduct));
+
+            hienthisp()
+        }
     } else alert('Hãy nhập thông tin vật phẩm muốn thêm')
 }
 
 function suatensp(suaten) {
-    for (let i = 0; i < product.length; i++) {
+    for (let i = 0; i < storedproduct.length; i++) {
         let nhap;
-        if (suaten === product[i].getname()) {
+        if (suaten === storedproduct[i].name) {
             nhap = prompt('Sửa số lượng sản phẩm: ');
             while (nhap == '') {
                 nhap = prompt('Sửa số lượng sản phẩm: ');
             }
-            product[i].setamount(nhap);
+            storedproduct[i].amount = nhap;
 
             hienthisp()
         }
@@ -128,7 +131,7 @@ function sortarrayaz() {
 
 function sortarrayza() {
 
-    product.sort(function (a, b) {
+    storedproduct.sort(function (a, b) {
         if (a.getbrand() < b.getbrand()) {
             return 1;
         }
@@ -140,7 +143,7 @@ function sortarrayza() {
 }
 
 function sortmodelaz() {
-    product.sort(function (a, b) {
+    storedproduct.sort(function (a, b) {
         if (a.getname() < b.getname()) {
             return -1;
         }
@@ -153,7 +156,7 @@ function sortmodelaz() {
 
 function sortmodelza() {
 
-    product.sort(function (a, b) {
+    storedproduct.sort(function (a, b) {
         if (a.getname() < b.getname()) {
             return 1;
         }
@@ -166,7 +169,7 @@ function sortmodelza() {
 
 function sortamountgl() {
 
-    product.sort(function (a, b) {
+    storedproduct.sort(function (a, b) {
         if (a.getamount() < b.getamount()) {
             return -1;
         }
@@ -179,7 +182,7 @@ function sortamountgl() {
 
 function sortamountlg() {
 
-    product.sort(function (a, b) {
+    storedproduct.sort(function (a, b) {
         if (a.getamount() < b.getamount()) {
             return 1;
         }
