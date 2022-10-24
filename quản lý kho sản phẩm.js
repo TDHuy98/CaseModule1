@@ -111,6 +111,7 @@ function xoasp(spxoa) {
     for (let i = 0; i < storedproduct.length; i++) {
         if (spxoa === storedproduct[i].name) {
             storedproduct.splice(i, 1);
+            localStorage.setItem(stored, JSON.stringify(storedproduct));
 
             hienthisp()
         }
@@ -118,13 +119,14 @@ function xoasp(spxoa) {
 }
 
 function sortarrayaz() {
-    product.sort(function (a, b) {
-        if (a.getbrand() < b.getbrand()) {
+    storedproduct.sort(function (a, b) {
+        if (a.brand < b.brand) {
             return -1;
         }
-        if (a.getbrand() > b.getbrand()) {
+        if (a.brand > b.brand) {
             return 1;
         }
+        localStorage.setItem(stored, JSON.stringify(storedproduct));
     })
     hienthisp()
 }
@@ -132,10 +134,10 @@ function sortarrayaz() {
 function sortarrayza() {
 
     storedproduct.sort(function (a, b) {
-        if (a.getbrand() < b.getbrand()) {
+        if (a.brand < b.brand) {
             return 1;
         }
-        if (a.getbrand() > b.getbrand()) {
+        if (a.brand > b.brand) {
             return -1;
         }
     })
@@ -144,10 +146,10 @@ function sortarrayza() {
 
 function sortmodelaz() {
     storedproduct.sort(function (a, b) {
-        if (a.getname() < b.getname()) {
+        if (a.name < b.name) {
             return -1;
         }
-        if (a.getname() > b.getname()) {
+        if (a.name > b.name) {
             return 1;
         }
     })
@@ -157,10 +159,10 @@ function sortmodelaz() {
 function sortmodelza() {
 
     storedproduct.sort(function (a, b) {
-        if (a.getname() < b.getname()) {
+        if (a.name < b.name) {
             return 1;
         }
-        if (a.getname() > b.getname()) {
+        if (a.name > b.name) {
             return -1;
         }
     })
@@ -170,10 +172,10 @@ function sortmodelza() {
 function sortamountgl() {
 
     storedproduct.sort(function (a, b) {
-        if (a.getamount() < b.getamount()) {
+        if (a.amount < b.amount) {
             return -1;
         }
-        if (a.getamount() > b.getamount()) {
+        if (a.amount > b.getamount) {
             return 1;
         }
     })
@@ -183,10 +185,10 @@ function sortamountgl() {
 function sortamountlg() {
 
     storedproduct.sort(function (a, b) {
-        if (a.getamount() < b.getamount()) {
+        if (a.amount < b.amount) {
             return 1;
         }
-        if (a.getamount() > b.getamount()) {
+        if (a.amount > b.amount) {
             return -1;
         }
     })
