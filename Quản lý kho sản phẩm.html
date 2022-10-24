@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý kho sản phẩm</title>
+    <style>
+
+        .dropbtn {
+            cursor: pointer;
+        }
+
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: darkgray;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 170px;
+            overflow: auto;
+            box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            background-color: white;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 3px 5px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .tablelist {
+            width: 40%;
+            border-collapse: collapse;
+            border: 1px solid black;
+            font-size: 16px;
+            color: black;
+            text-align: center;
+        }
+
+        .trlist {
+            width: auto;
+            border-collapse: collapse;
+            border: 1px solid black;
+            font-size: 16px;
+            color: black;
+            text-align: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto;
+        }
+
+        .grid-item {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<div class="grid-container">
+    <div class="grid-item">
+        <h1>Ứng dụng quản lý kho</h1>
+    </div>
+    <hr style="width:100%;text-align:center;">
+    <div class="grid-item">
+        <form method="get">
+            <h3>Thêm sản phẩm</h3>
+            <label for="spthem"></label><input type="text" id="spthem" placeholder="Tên hãng muốn thêm">
+            <label for="nameinp"></label><input type="text" id="nameinp"
+                                                placeholder="Tên sản phẩm muốn thêm">
+
+            <label for="amountinp"></label><input type="text" id="amountinp"
+                                                  placeholder="Số lượng sản phẩm muốn thêm">
+        </form>
+            <input id="thembtn" type="submit" disabled onclick="themsp();" value="Thêm sản phẩm"></input>
+
+    </div>
+<div>
+        <h3>Tìm kiếm sản phẩm</h3>
+
+            <input type="text" id="search" placeholder="Tìm kiếm sản phẩm">
+            <input type="submit" onclick="timkiem()" value="Tìm">
+
+    </div>
+
+    <hr style="width:100%;text-align:center;">
+</div>
+<div class="grid-item">
+    <h3>Danh sách sản phẩm</h3>
+    <div class="dropdown">
+        <button onclick="myFunction()" id="dropbtn" class="dropbtn" disabled>Sắp xếp</button>
+        <div id="myDropdown" class="dropdown-content">
+            <a>
+                <button style="width: 160px; text-align: left" onclick="sortarrayaz()">theo hãng a-z</button>
+            </a>
+            <a>
+                <button style="width: 160px; text-align: left" onclick="sortarrayza()">theo hãng z-a</button>
+            </a>
+            <a>
+                <button style="width: 160px; text-align: left" onclick="sortmodelaz()">theo sản phẩm a-z</button>
+            </a>
+            <a>
+                <button style="width: 160px; text-align: left" onclick="sortmodelza()">theo sản phẩm z-a</button>
+            </a>
+            <a>
+                <button style="width: 160px; text-align: left" onclick="sortamountgl()">theo số lượng tăng</button>
+            </a>
+            <a>
+                <button style="width: 160px; text-align: left" onclick="sortamountlg()">theo số lượng giảm</button>
+            </a>
+
+        </div>
+    </div>
+    <div class="grid-item" id="p1">
+        <button onclick="hienthisp();document.getElementById('dropbtn').removeAttribute('disabled');document.getElementById('thembtn').removeAttribute('disabled')">Hiển thị sản
+            phầm
+        </button>
+    </div>
+</div>
+</div>
+</body>
+<script src="quản%20lý%20kho%20sản%20phẩm.js"></script>
+</html>
