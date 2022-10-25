@@ -1,0 +1,131 @@
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.main {
+    padding: 16px;
+    margin-top: 30px;
+    height: 1500px; /* Used in this example to enable scrolling */
+}
+
+.dropbtn {
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: darkgray;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 170px;
+    overflow: auto;
+    box-shadow: 0px 5px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    background-color: white;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 3px 5px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+.tablelist {
+    width: 40%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    font-size: 16px;
+    color: black;
+    text-align: center;
+}
+
+.trlist {
+    width: auto;
+    border-collapse: collapse;
+    border: 1px solid black;
+    font-size: 16px;
+    color: black;
+    text-align: left;
+}
+
+/*.grid-container {*/
+/*    display: grid;*/
+/*    grid-template-columns: auto;*/
+/*}*/
+
+/*.grid-item {*/
+/*    text-align: left;*/
+/*}*/
+
+
+.item1 {
+    grid-area: header;
+}
+
+.item2 {
+    grid-area: menu;
+}
+
+.item3 {
+    grid-area: add;
+}
+
+.item4 {
+    grid-area: search;
+}
+
+.item5 {
+    grid-area: footer;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    'header header header header header header'
+    'menu add add search search search'
+    'menu footer footer footer footer footer';
+    gap: 5px;
+    background-color: #2196F3;
+    padding: 5px;
+}
+
+.grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    padding: 10px 10px;
+}

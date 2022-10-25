@@ -34,14 +34,12 @@ class item {
     }
 }
 
-// var product = [new item('Sony', 'XperiaX', 100), new item('Asus', 'ROG_Phone_6', 9), new item('SamSung', 'ZFold4', 6)];
-
 var stored
 if (JSON.parse(localStorage.getItem(stored)) == null) {
     localStorage.setItem(stored, JSON.stringify([new item('', '', '')]));
 }
 var storedproduct = JSON.parse(localStorage.getItem(stored));
-console.log(storedproduct)
+console.log(storedproduct);
 
 
 function hienthisp() {
@@ -78,18 +76,33 @@ function themsp() {
     let brand = document.getElementById('spthem').value;
     let model = document.getElementById('nameinp').value;
     let amount = document.getElementById('amountinp').value;
-    if (brand != '' && model != '' & amount != '') {
-        let a = new item(brand, model, amount)
-        if (storedproduct[0] == {brand: "", name: '', amount: ''}) {
-
-            storedproduct.shift()
-        } else {
-            storedproduct.push(JSON.parse(JSON.stringify(a)))
-            localStorage.setItem(stored, JSON.stringify(storedproduct));
-
-            hienthisp()
+    if (brand != '' && model != '' && amount != '') {
+        let filled = 1;
+        for (let i = 0; i < storedproduct.length - 1; i++) {
+            if (model == storedproduct[i].name) {
+                alert('Sản phẩm đã có trong kho');
+                document.getElementById('spthem').value = '';
+                document.getElementById('nameinp').value = '';
+                document.getElementById('amountinp').value = '';
+                filled = 0;
+                return filled;
+                break;
+            }
         }
+        if (filled == 1) {
+            let a = new item(brand, model, amount)
+            if (storedproduct[0] == {brand: "", name: '', amount: ''}) {
+                storedproduct.shift()
+            } else {
+                storedproduct.push(JSON.parse(JSON.stringify(a)))
+                localStorage.setItem(stored, JSON.stringify(storedproduct));
+            }
+        }
+        hienthisp()
     } else alert('Hãy nhập thông tin vật phẩm muốn thêm')
+    document.getElementById('spthem').value = '';
+    document.getElementById('nameinp').value = '';
+    document.getElementById('amountinp').value = '';
 }
 
 function suatensp(suaten) {
@@ -100,20 +113,26 @@ function suatensp(suaten) {
             while (nhap == '') {
                 nhap = prompt('Sửa số lượng sản phẩm: ');
             }
-            storedproduct[i].amount = nhap;
+            if (nhap.trim() == '') {
+                alert('Nhập số lượng cần sửa')
 
+            } else {
+                storedproduct[i].amount = nhap;
+            }
             hienthisp()
         }
     }
 }
 
 function xoasp(spxoa) {
+    let xacnhanxoa = confirm('Xác nhận xóa')
     for (let i = 0; i < storedproduct.length; i++) {
-        if (spxoa === storedproduct[i].name) {
-            storedproduct.splice(i, 1);
-            localStorage.setItem(stored, JSON.stringify(storedproduct));
-
-            hienthisp()
+        if (xacnhanxoa == true) {
+            if (spxoa === storedproduct[i].name) {
+                storedproduct.splice(i, 1);
+                localStorage.setItem(stored, JSON.stringify(storedproduct));
+                hienthisp()
+            }
         }
     }
 }
@@ -224,19 +243,3 @@ window.onclick = function (event) {
         }
     }
 }
-
-
-// function selectsort(){
-//     let type=document.getElementById('sortitem').value;
-//     if (type == bybrandaz){
-//         sortarrayaz()
-//     }else if (type == bybrandza){
-//         sortarrayza()
-//     }else if (type==bymodelaz){
-//         sortmodelaz()
-//     }else if (type==bymodelza){
-//         sortmodelza()
-//     }else if (type==byamountgl){
-//         sortamountgl()
-//     }else sortamountlg()
-// }
