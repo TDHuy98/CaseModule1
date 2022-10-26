@@ -99,6 +99,7 @@
 
 .item2 {
     grid-area: menu;
+
 }
 
 .item3 {
@@ -114,18 +115,74 @@
 }
 
 .grid-container {
+
     display: grid;
     grid-template-areas:
-    'header header header header header header'
-    'menu add add search search search'
-    'menu footer footer footer footer footer';
+    'menu header header header header header header header'
+    'menu add add add add search search search'
+    'menu footer footer footer footer footer footer footer';
     gap: 5px;
     background-color: #2196F3;
-    padding: 5px;
+    padding: 2px;
+
 }
 
 .grid-container > div {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: left;
-    padding: 10px 10px;
+    padding: 2px 2px;
+}
+
+
+/*.item2 {*/
+/*    height: 100%;*/
+/*    position: fixed;*/
+/*    z-index: 1;*/
+/*    background-color: #111;*/
+/*    overflow-x: hidden;*/
+/*    padding-top: 20px;*/
+/*}*/
+
+.item2 a {
+    padding: 5px 1px 6px 1px;
+    font-size: 20px;
+    text-decoration: none;
+    text-align: left;
+    color: #2196F3;
+    display: block;
+}
+.item2 a button{
+    width: 90px;
+    font-size: 20px;
+    padding: 5px 5px 5px 5px ;
+    background-color: lightskyblue;
+    cursor: pointer;
+}
+
+.item2 a button:hover button:focus{
+    background-color: dodgerblue;
+}
+/*.item2 a:hover {*/
+/*    color: #f1f1f1;*/
+/*}*/
+
+/*.main {*/
+/*    margin-left: 160px; !* Same as the width of the sidenav *!*/
+/*    font-size: 28px; !* Increased text to enable scrolling *!*/
+/*    padding: 0px 10px;*/
+/*}*/
+
+/*@media screen and (max-height: 450px) {*/
+/*    .sidenav {padding-top: 15px;}*/
+/*    .sidenav a {font-size: 18px;}*/
+/*}*/
+
+
+
+
+.grid-list{
+    display: grid;
+    grid-template-areas:
+    'stt brand brand model model amount amount adjust adjust'
+    'number pbrand pbrand pmodel pmodel pamount pamount padjust padjust'
 }

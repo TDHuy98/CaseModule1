@@ -243,3 +243,7 @@ window.onclick = function (event) {
         }
     }
 }
+
+function logout(){
+    window.location="LoginForm.html"
+}
