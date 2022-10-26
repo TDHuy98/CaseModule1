@@ -180,9 +180,3 @@
 
 
 
-.grid-list{
-    display: grid;
-    grid-template-areas:
-    'stt brand brand model model amount amount adjust adjust'
-    'number pbrand pbrand pmodel pmodel pamount pamount padjust padjust'
-}
