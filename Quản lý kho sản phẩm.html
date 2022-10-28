@@ -6,81 +6,118 @@
     <link href="UIForMainPage.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<div class="form-popup" id="myForm">
+    <form method="post" class="form-container">
+        <h1>Đăng nhập để sử dụng</h1>
 
-<div class="grid-container">
-    <div class="item1" >
-        <p>Ứng dụng quản lý kho</p>
-    </div>
-    <div class="item2"
-         style="position: fixed; display: block; height: 100%;
+        <label for="username"><b>Tên đăng nhập</b></label>
+        <input id="username" type="text" required>
+
+        <label for="password"><b>Password</b></label>
+        <input type="password" id="password" required>
+
+        <button id="loginbtn" type="button" onclick="login()" class="btn">Login</button>
+    </form>
+</div>
+<div id="main" hidden style="position: fixed; left: 7%; top: 0; width: 100%">
+    <div class="grid-container">
+        <div class="item1" style="text-align: center;">
+            <p><b>Ứng dụng quản lý kho</b></p>
+        </div>
+        <div class="item2"
+             style="position: fixed; display: block; height: 100%;
     z-index: 1;
-    width: 99px;
-    left: 8px;
+    width: 7%;
+    left: 0px;
     top: 0;
     background-color: #2196F3;
-    overflow-x: hidden;
     padding-top: 20px;">
-        <a>
-            <button onclick="category">Category</button>
-            <br></a>
-        <a>
-            <button onclick="quanly">Quản lý</button>
-            <br></a>
-        <a>
-            <button onclick="logout()">Đăng xuất</button>
-            <br></a>
-    </div>
-    <div class="item3">
-        <form method="get">
-
-            <label for="spthem"></label><input type="text" id="spthem" placeholder="Tên hãng muốn thêm">
-            <label for="nameinp"></label><input type="text" id="nameinp"
-                                                placeholder="Tên sản phẩm muốn thêm">
-
-            <label for="amountinp"></label><input type="text" id="amountinp"
-                                                  placeholder="Số lượng sản phẩm muốn thêm">
-        </form>
-        <input style="cursor: pointer" id="thembtn" type="submit" disabled onclick="themsp();" value="Thêm sản phẩm">
-    </div>
-    <div class="item4">
-
-        <input type="search" id="search" placeholder="Tìm kiếm sản phẩm">
-        <input style="cursor: pointer" type="submit" onclick="timkiem()" value="Tìm">
-    </div>
-
-    <div class="item5">
-        <p>Danh sách sản phẩm</p>
-        <div class="dropdown">
-            <button onclick="myFunction()" id="dropbtn" class="dropbtn" disabled>Sắp xếp</button>
-            <div id="myDropdown" class="dropdown-content">
-                <a>
-                    <button style="width: 160px; text-align: left" onclick="sortarrayaz()">theo hãng a-z</button>
-                </a>
-                <a>
-                    <button style="width: 160px; text-align: left" onclick="sortarrayza()">theo hãng z-a</button>
-                </a>
-                <a>
-                    <button style="width: 160px; text-align: left" onclick="sortmodelaz()">theo sản phẩm a-z</button>
-                </a>
-                <a>
-                    <button style="width: 160px; text-align: left" onclick="sortmodelza()">theo sản phẩm z-a</button>
-                </a>
-                <a>
-                    <button style="width: 160px; text-align: left" onclick="sortamountgl()">theo số lượng tăng</button>
-                </a>
-                <a>
-                    <button style="width: 160px; text-align: left" onclick="sortamountlg()">theo số lượng giảm</button>
-                </a>
-
-            </div>
+            <a>
+                <button onclick="category">Category</button>
+                <br></a>
+            <a>
+                <button onclick="quanly">Quản lý</button>
+                <br></a>
+            <a>
+                <button onclick="logout()">Đăng xuất</button>
+                <br></a>
         </div>
-        <div class="item5" >
-            <a id="p1">
-            <button style="cursor: pointer" onclick="hienthisp();document.getElementById('dropbtn').removeAttribute('disabled');document.getElementById('thembtn').removeAttribute('disabled')">
-                Hiển thị sản
-                phầm
-            </button>
-            </a>
+        <div class="item3">
+            <form method="get">
+
+                <label for="spthem"></label><input type="text" id="spthem" placeholder="Tên hãng muốn thêm">
+                <label for="nameinp"></label><input type="text" id="nameinp"
+                                                    placeholder="Tên sản phẩm muốn thêm">
+
+                <label for="amountinp"></label><input type="text" id="amountinp"
+                                                      placeholder="Số lượng sản phẩm muốn thêm">
+            </form>
+            <input style="cursor: pointer" id="thembtn" type="submit" disabled onclick="themsp();"
+                   value="Thêm sản phẩm">
+        </div>
+        <div class="item4">
+
+            <input type="search" id="search" placeholder="Tìm kiếm sản phẩm">
+            <button style="cursor: pointer" onclick="timkiem()" value="Tìm">Tìm</button>
+        </div>
+
+        <div class="item5">
+            <p>Danh sách sản phẩm</p>
+            <table>
+                <tr>
+                    <td>
+                        <div class="dropdown">
+                            <button onclick="myFunction()" id="dropbtn" class="dropbtn" disabled>Sắp xếp</button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a>
+                                    <button style="width: 160px; text-align: left" onclick="sortarrayaz()">theo hãng a-z
+                                    </button>
+                                </a>
+                                <a>
+                                    <button style="width: 160px; text-align: left" onclick="sortarrayza()">theo hãng z-a
+                                    </button>
+                                </a>
+                                <a>
+                                    <button style="width: 160px; text-align: left" onclick="sortmodelaz()">theo sản phẩm
+                                        a-z
+                                    </button>
+                                </a>
+                                <a>
+                                    <button style="width: 160px; text-align: left" onclick="sortmodelza()">theo sản phẩm
+                                        z-a
+                                    </button>
+                                </a>
+                                <a>
+                                    <button style="width: 160px; text-align: left" onclick="sortamountgl()">theo số
+                                        lượng tăng
+                                    </button>
+                                </a>
+                                <a>
+                                    <button style="width: 160px; text-align: left" onclick="sortamountlg()">theo số
+                                        lượng giảm
+                                    </button>
+                                </a>
+
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="hienthi">
+                            <button onclick="hienthisp()" hidden id="hienthids">Hiển thị đủ danh sách</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="item6" style="overflow: scroll;height: 550px">
+                <a id="p1">
+                    <button style="cursor: pointer"
+                            onclick="hienthisp();document.getElementById('dropbtn').removeAttribute('disabled');document.getElementById('thembtn').removeAttribute('disabled')">
+                        Hiển thị sản
+                        phẩm
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
 </div>

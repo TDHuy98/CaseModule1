@@ -1,32 +1,4 @@
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-    position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.navbar a {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.navbar a:hover {
-    background: #ddd;
-    color: black;
-}
-
-.main {
-    padding: 16px;
-    margin-top: 30px;
-    height: 1500px; /* Used in this example to enable scrolling */
-}
-
+/*Dropdown*/
 .dropbtn {
     cursor: pointer;
 }
@@ -64,41 +36,33 @@
 .show {
     display: block;
 }
-
+/*End dropdown*/
 .tablelist {
-    width: 40%;
+    width: 70%;
+    border-collapse: collapse;
+    border: 1px solid black;
+    font-size: 16px;
+    color: black;
+    text-align: center;
+    padding: 5px 5px 5px;
+}
+
+.trlist {
+    width: 7%;
     border-collapse: collapse;
     border: 1px solid black;
     font-size: 16px;
     color: black;
     text-align: center;
 }
-
-.trlist {
-    width: auto;
-    border-collapse: collapse;
-    border: 1px solid black;
-    font-size: 16px;
-    color: black;
-    text-align: left;
-}
-
-/*.grid-container {*/
-/*    display: grid;*/
-/*    grid-template-columns: auto;*/
-/*}*/
-
-/*.grid-item {*/
-/*    text-align: left;*/
-/*}*/
-
-
+/*Grid layout*/
 .item1 {
     grid-area: header;
 }
 
 .item2 {
     grid-area: menu;
+
 
 }
 
@@ -111,6 +75,10 @@
 }
 
 .item5 {
+    grid-area: h1;
+}
+
+.item6 {
     grid-area: footer;
 }
 
@@ -120,6 +88,7 @@
     grid-template-areas:
     'menu header header header header header header header'
     'menu add add add add search search search'
+    'menu h1 h1 h1 h1 h1 h1 h1'
     'menu footer footer footer footer footer footer footer';
     gap: 5px;
     background-color: #2196F3;
@@ -133,16 +102,6 @@
     padding: 2px 2px;
 }
 
-
-/*.item2 {*/
-/*    height: 100%;*/
-/*    position: fixed;*/
-/*    z-index: 1;*/
-/*    background-color: #111;*/
-/*    overflow-x: hidden;*/
-/*    padding-top: 20px;*/
-/*}*/
-
 .item2 a {
     padding: 5px 1px 6px 1px;
     font-size: 20px;
@@ -151,32 +110,79 @@
     color: #2196F3;
     display: block;
 }
-.item2 a button{
-    width: 90px;
+
+.item2 a button {
+    width: 200%;
     font-size: 20px;
-    padding: 5px 5px 5px 5px ;
+    padding: 5px 5px 5px 5px;
     background-color: lightskyblue;
     cursor: pointer;
 }
 
-.item2 a button:hover button:focus{
+.item2 a button:hover button:focus {
     background-color: dodgerblue;
 }
-/*.item2 a:hover {*/
-/*    color: #f1f1f1;*/
-/*}*/
 
-/*.main {*/
-/*    margin-left: 160px; !* Same as the width of the sidenav *!*/
-/*    font-size: 28px; !* Increased text to enable scrolling *!*/
-/*    padding: 0px 10px;*/
-/*}*/
+/*End grid layout*/
 
-/*@media screen and (max-height: 450px) {*/
-/*    .sidenav {padding-top: 15px;}*/
-/*    .sidenav a {font-size: 18px;}*/
-/*}*/
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 
+/*FormLogin */
+.form-popup {
 
+    position: fixed;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+    background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+}
 

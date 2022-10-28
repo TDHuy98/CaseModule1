@@ -43,6 +43,7 @@ console.log(storedproduct);
 
 
 function hienthisp() {
+    document.getElementById('hienthids').hidden = 1
     let stt = 1;
     let chuoicaccaulenh = '';
     for (let i = 0; i < storedproduct.length; i++, stt++) {
@@ -71,6 +72,53 @@ function hienthisp() {
         + '</tr>' + chuoicaccaulenh
         + '</table>';
 }
+
+function timkiem() {
+    let i = 0
+    let stt = 1;
+    let chuoicaccaulenh = '';
+    let keyword = document.getElementById('search').value;
+    if (keyword == '') {
+        alert('Nhập vào tên hãng hoặc mẫu sản phẩm để tìm kiếm')
+    } else {
+        document.getElementById('hienthids').hidden = 0;
+        for (i; i < storedproduct.length; i++, stt++) {
+            let byname = storedproduct[i].name;
+            let bybrand = storedproduct[i].brand;
+            if (byname.includes(keyword) || bybrand.includes(keyword)) {
+                let caulenh = '<tr class="tablelist">' + '<td>' + stt + '</td>'
+                    + '<td class="tablelist">' + storedproduct[i].brand + '</td>'
+                    + '<td class="tablelist">' + storedproduct[i].name + '</td>'
+                    + '<td class="trlist">' + storedproduct[i].amount + '</td>'
+                    + '<td class="trlist">' + '<button onclick=' + 'suatensp("' + storedproduct[i].name + '")>' + 'Sửa' + '</button>'
+                    + '</td>'
+                    + '<td class="trlist">' + '<button onclick=' + 'xoasp("' + storedproduct[i].name + '")>' + 'Xóa' + '</button>'
+                    + '</td>'
+                    + '</tr>';
+                chuoicaccaulenh += caulenh;
+            }
+        }
+        if (chuoicaccaulenh != '') {
+            document.getElementById('p1').innerHTML =
+
+                '<table class="tablelist">'
+                + '<tr class="tablelist">'
+                + '<th class="trlist">STT</th>'
+                + '<th class="tablelist">Hãng</th>'
+                + '<th class="tablelist">Model</th>'
+                + '<th class="trlist">Số lượng</th>'
+                + '<th class="tablelist" colspan="2">Tùy chỉnh</th>'
+                + '</tr>' + chuoicaccaulenh
+                + '</table>';
+        } else {
+            alert('Sản phẩm cần tìm không có trong kho')
+            document.getElementById('hienthids').hidden = 0
+        }
+        document.getElementById('search').value = '';
+    }
+
+}
+
 
 function themsp() {
     let brand = document.getElementById('spthem').value;
@@ -145,7 +193,7 @@ function sortarrayaz() {
         if (a.brand > b.brand) {
             return 1;
         }
-        localStorage.setItem(stored, JSON.stringify(storedproduct));
+
     })
     hienthisp()
 }
@@ -191,12 +239,7 @@ function sortmodelza() {
 function sortamountgl() {
 
     storedproduct.sort(function (a, b) {
-        if (a.amount < b.amount) {
-            return -1;
-        }
-        if (a.amount > b.getamount) {
-            return 1;
-        }
+        return a.amount - b.amount
     })
     hienthisp()
 }
@@ -204,23 +247,10 @@ function sortamountgl() {
 function sortamountlg() {
 
     storedproduct.sort(function (a, b) {
-        if (a.amount < b.amount) {
-            return 1;
-        }
-        if (a.amount > b.amount) {
-            return -1;
-        }
+
+        return b.amount - a.amount
     })
     hienthisp()
-}
-
-function timkiem() {
-    let tim = document.getElementById('search').value;
-    for (let i = 0; i < product.length - 1; i++) {
-        if (tim == product[i].getbrand() || tim == product[i].getname()) {
-
-        }
-    }
 }
 
 
@@ -244,6 +274,21 @@ window.onclick = function (event) {
     }
 }
 
-function logout(){
-    window.location="LoginForm.html"
+function logout() {
+    document.getElementById('main').hidden = 1
+    document.getElementById('myForm').hidden = 0
+    document.getElementById('username').value = null;
+    document.getElementById('password').value = null;
+}
+
+
+function login() {
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+    if (username != 'Admin' || password != 'a') {
+        alert('Sai tên đăng nhập hoặc mật khẩu')
+    } else {
+        document.getElementById('main').hidden = 0
+        document.getElementById('myForm').hidden = 1
+    }
 }
